@@ -86,7 +86,7 @@ const checkGuess = () => {
         messageEl.style.color = "blue"
         inputEl.value = ""
     } else {
-        messageEl.textContent = `${guess} - это число больше загаданного - пробуй ещё🦄`
+        messageEl.textContent = `${guess} - Бери выше🦄 - пробуй ещё🦄`
         messageEl.style.color = "blue"
         inputEl.value = ""
     }
