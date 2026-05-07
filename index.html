@@ -4,9 +4,14 @@
     <meta charset="UTF-8">
     <title>Угадай число — курсовая</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-family: 'Segoe UI', system-ui, 'Poppins', sans-serif;
             min-height: 100vh;
             background: linear-gradient(135deg, #fff0f5 0%, #ffe4ed 100%);
             display: flex;
@@ -14,6 +19,7 @@
             align-items: center;
             padding: 40px 20px;
         }
+
         .game-card {
             max-width: 1300px;
             width: 100%;
@@ -25,10 +31,18 @@
             animation: fadeSlideUp 0.6s ease-out;
             border: 1px solid rgba(255, 255, 255, 0.6);
         }
+
         @keyframes fadeSlideUp {
-            0% { opacity: 0; transform: translateY(30px); }
-            100% { opacity: 1; transform: translateY(0); }
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
+
         .title-row {
             display: flex;
             align-items: center;
@@ -37,6 +51,7 @@
             margin-bottom: 20px;
             flex-wrap: wrap;
         }
+
         .title-img {
             width: 60px;
             height: 60px;
@@ -44,6 +59,7 @@
             border-radius: 30px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
+
         h1 {
             font-size: 2.6rem;
             font-weight: 700;
@@ -51,6 +67,7 @@
             letter-spacing: 1px;
             text-align: center;
         }
+
         .stats {
             text-align: center;
             background: rgba(94, 42, 132, 0.12);
@@ -61,6 +78,7 @@
             font-size: 1.3rem;
             color: #3b2a4e;
         }
+
         .stats strong {
             font-size: 2rem;
             background: #5e2a84;
@@ -70,6 +88,7 @@
             color: white;
             margin-left: 12px;
         }
+
         .game-zone {
             display: flex;
             flex-wrap: wrap;
@@ -77,6 +96,7 @@
             gap: 18px;
             margin-bottom: 32px;
         }
+
         input {
             font-size: 1.3rem;
             padding: 14px 24px;
@@ -89,11 +109,13 @@
             transition: 0.2s;
             font-weight: 500;
         }
+
         input:focus {
             border-color: #9b4dca;
             box-shadow: 0 0 0 3px rgba(155, 77, 202, 0.3);
             transform: scale(1.01);
         }
+
         button {
             font-size: 1.1rem;
             font-weight: bold;
@@ -107,17 +129,35 @@
             gap: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
         }
-        button:active { transform: scale(0.97); }
+
+        button:active {
+            transform: scale(0.97);
+        }
+
         #guessBtn {
             background: #9b4dca;
             color: white;
             box-shadow: 0 6px 14px rgba(155, 77, 202, 0.35);
         }
-        #guessBtn:hover { background: #7e3ab0; }
+
+        #guessBtn:hover {
+            background: #7e3ab0;
+        }
+
         #newGameBtn {
             background: #f3e5ff;
             color: #5e2a84;
         }
+
+        #resetRecordsBtn {
+            background: #f3e5ff;
+            color: #5e2a84;
+        }
+
+        #resetRecordsBtn:hover {
+            background: #ffcd94;
+        }
+
         .message {
             text-align: center;
             font-size: 1.2rem;
@@ -128,6 +168,7 @@
             background: rgba(255, 255, 255, 0.6);
             animation: fadeSlideUp 0.25s ease-out;
         }
+
         .records-wrapper {
             display: flex;
             gap: 28px;
@@ -135,6 +176,7 @@
             flex-wrap: wrap;
             margin-top: 20px;
         }
+
         .records-box {
             flex: 2;
             min-width: 260px;
@@ -143,23 +185,27 @@
             border-radius: 32px;
             padding: 18px 20px;
         }
+
         .records-box h3 {
             font-size: 1.6rem;
             text-align: center;
             color: #5e2a84;
             margin-bottom: 16px;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             border-radius: 28px;
             overflow: hidden;
         }
+
         th {
             background: #9b4dca;
             color: white;
             padding: 12px 6px;
         }
+
         td {
             padding: 10px 6px;
             text-align: center;
@@ -167,19 +213,23 @@
             color: #2c1c3a;
             border-bottom: 1px solid #e2d0f5;
         }
+
         tr:nth-child(even) td {
             background: rgba(235, 220, 255, 0.6);
         }
+
         tr:first-child td:first-child {
             font-weight: bold;
             color: #d4af37;
             text-shadow: 0 0 2px #b68b40;
             font-size: 1.2rem;
         }
+
         tr:first-child td:first-child::before {
             content: "🔮 ";
             font-size: 1.1rem;
         }
+
         .pony-decor {
             flex: 0.8;
             min-width: 150px;
@@ -189,41 +239,52 @@
             padding: 16px 12px;
             backdrop-filter: blur(4px);
         }
+
         .pony-decor img {
             max-width: 100%;
             width: 140px;
             border-radius: 32px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
+
         .pony-decor p {
             margin-top: 10px;
             font-weight: 500;
             color: #a06bc2;
             font-size: 0.9rem;
         }
+
         @media (max-width: 780px) {
-            .game-card { padding: 20px; }
-            .records-wrapper { flex-direction: column; }
-            .pony-decor { order: 1; text-align: center; }
+            .game-card {
+                padding: 20px;
+            }
+            .records-wrapper {
+                flex-direction: column;
+            }
+            .pony-decor {
+                order: 1;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
 <div class="game-card">
     <div class="title-row">
-        <img class="title-img" src="luna.png" alt="левая картинка" onerror="this.style.display='none'">
-        <h1>✨ Угадай  число ✨</h1>
-        <img class="title-img" src="nightmare.png" alt="правая картинка" onerror="this.style.display='none'">
+        <img class="title-img" src="luna.png" alt="Принцесса Луна" onerror="this.style.display='none'">
+        <h1>✨ Угадай число ✨</h1>
+        <img class="title-img" src="nightmare.png" alt="Найтмер Мун" onerror="this.style.display='none'">
     </div>
 
     <div class="stats">
-         Попыток: <strong id="attemptsCount">0</strong>
+     ПОПЫТОК: <strong id="attemptsCount">0</strong>
     </div>
 
     <div class="game-zone">
         <input type="number" id="guessInput" placeholder="от 1 до 100">
         <button id="guessBtn"> Проверить</button>
         <button id="newGameBtn"> Новая игра</button>
+        <button id="resetRecordsBtn"> Сбросить рекорды</button>
     </div>
 
     <div class="message" id="message">
@@ -232,12 +293,12 @@
 
     <div class="records-wrapper">
         <div class="records-box">
-            <h3>💮 Таблица лидеров 💮</h3>
+            <h3>💮Таблица лидеров 💮</h3>
             <div id="records"></div>
         </div>
         <div class="pony-decor">
-            <img src="twilight.png" alt="Принцесса Искорка" onerror="this.src='https://placehold.co/200x200?text=pony.png+не+найден'; this.onerror=null;">
-            <p>🦄 Гадай 🦄</p>
+            <img src="twilight.png" alt="Принцесса Искорка" onerror="this.style.display='none'">
+            <p>🦄Гадай 🦄</p>
         </div>
     </div>
 </div>

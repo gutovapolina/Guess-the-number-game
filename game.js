@@ -29,25 +29,39 @@ const addRecord = (name, attempts) => {
 const showRecords = () => {
     const recordsDiv = document.getElementById("records")
     if (records.length === 0) {
-        recordsDiv.innerHTML = "<p>нет рекордов - сыграй и стань первым!</p>"
+        recordsDiv.innerHTML = "<p>сыграйте и станьте первым!</p>"
         return
     }
     let tableRows = ""
     records.map((record, index) => {
-        tableRows += `<tr><td>${index + 1}</td><td>${record.name}</td><td>${record.attempts}</td><td>${record.date}</td></tr>`
+        tableRows += `<tr>
+            <td>${index + 1}</td>
+            <td>${record.name}</td>
+            <td>${record.attempts}</td>
+            <td>${record.date}</td>
+        </tr>`
     })
-    const html = `<table border="1" cellpadding="5"><tr><th>#</th><th>Имя</th><th>Попытки</th><th>Дата</th><tr>${tableRows}</table>`
+    const html = `<table border="1" cellpadding="5"><tr><th>#</th><th>Имя</th><th>Попытки</th><th>Дата</th></tr>${tableRows}</table>`
     recordsDiv.innerHTML = html
 }
 
 let secretNumber = 0
 let attemptsCount = 0
 
+const resetRecords = () => {
+    if (confirm(" Ты уверен, что хочешь удалить все рекорды навсегда?")) {
+        records = []
+        localStorage.removeItem("guessGameRecords")
+        showRecords()
+        alert("Все рекорды удалены. Таблица пуста.")
+    }
+}
+
 const startNewGame = () => {
     secretNumber = Math.floor(Math.random() * 100) + 1
     attemptsCount = 0
     const messageEl = document.getElementById("message")
-    messageEl.textContent = "Я загадала число от 1 до 100 попробуй угадать!"
+    messageEl.textContent = "🔮 Принцессы Эквестрии загадали число от 1 до 100. Назови его! 🔮"
     messageEl.style.color = "black"
     document.getElementById("guessInput").value = ""
     document.getElementById("guessInput").disabled = false
@@ -71,7 +85,7 @@ const checkGuess = () => {
     document.getElementById("attemptsCount").textContent = attemptsCount
 
     if (guess === secretNumber) {
-        messageEl.textContent = ` Победа! Ты угадал число ${secretNumber} за ${attemptsCount} попыток!`
+        messageEl.textContent = `🎇 ЭЛЕМЕНТЫ ГАРМОНИИ АКТИВИРОВАНЫ!  Ты угадала число ${secretNumber} за ${attemptsCount} попыток! 🎇`
         messageEl.style.color = "green"
         inputEl.disabled = true
         document.getElementById("guessBtn").disabled = true
@@ -82,11 +96,11 @@ const checkGuess = () => {
         }
         addRecord(playerName.trim(), attemptsCount)
     } else if (guess < secretNumber) {
-        messageEl.textContent = `${guess} - это число меньше загаданного - пробуй ещё🦄`
+        messageEl.textContent = `${guess}- 🦄 Элементы гармонии ждут выше! Бери число побольше`
         messageEl.style.color = "blue"
         inputEl.value = ""
     } else {
-        messageEl.textContent = `${guess} - Бери выше🦄 - пробуй ещё🦄`
+        messageEl.textContent = `${guess}- 🦄 Элементы гармонии чуть ниже! Бери число поменьше`
         messageEl.style.color = "blue"
         inputEl.value = ""
     }
@@ -98,6 +112,7 @@ const init = () => {
     startNewGame()
     document.getElementById("guessBtn").onclick = checkGuess
     document.getElementById("newGameBtn").onclick = startNewGame
+    document.getElementById("resetRecordsBtn").onclick = resetRecords
     document.getElementById("guessInput").onkeypress = (event) => {
         if (event.key === "Enter") {
             checkGuess()
