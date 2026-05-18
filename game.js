@@ -85,7 +85,7 @@ const checkGuess = () => {
     document.getElementById("attemptsCount").textContent = attemptsCount
 
     if (guess === secretNumber) {
-        messageEl.textContent = `🎇 ЭЛЕМЕНТЫ ГАРМОНИИ АКТИВИРОВАНЫ!  Ты угадала число ${secretNumber} за ${attemptsCount} попыток! 🎇`
+        messageEl.textContent = `🎇 ЭЛЕМЕНТЫ ГАРМОНИИ АКТИВИРОВАНЫ!  Ты угадал число ${secretNumber} за ${attemptsCount} попыток! 🎇`
         messageEl.style.color = "green"
         inputEl.disabled = true
         document.getElementById("guessBtn").disabled = true
