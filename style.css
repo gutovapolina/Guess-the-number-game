@@ -224,39 +224,11 @@ tr:first-child td:first-child::before {
     font-size: 1.1rem;
 }
 
-.pony-decor {
-    flex: 0.8;
-    min-width: 150px;
-    text-align: center;
-    background: rgba(255, 235, 245, 0.4);
-    border-radius: 48px;
-    padding: 16px 12px;
-    backdrop-filter: blur(4px);
-}
-
-.pony-decor img {
-    max-width: 100%;
-    width: 140px;
-    border-radius: 32px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
-
-.pony-decor p {
-    margin-top: 10px;
-    font-weight: 500;
-    color: #a06bc2;
-    font-size: 0.9rem;
-}
-
 @media (max-width: 780px) {
     .game-card {
         padding: 20px;
     }
     .records-wrapper {
         flex-direction: column;
-    }
-    .pony-decor {
-        order: 1;
-        text-align: center;
     }
 }
